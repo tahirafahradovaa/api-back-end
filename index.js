@@ -17,11 +17,7 @@ mongoose
   .catch((err) => {
     console.log("err", err);
   });
-// let newProduct = new products({
-//   productName: "writing from node",
-//   description: "overpricedphone",
-// });
-// newProduct.save();
+
 app.get("/", function (req, res) {
   res.json("Hello");
 });

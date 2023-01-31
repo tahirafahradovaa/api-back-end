@@ -5,7 +5,6 @@ const productsController = {
     products.find({ isDeleted: false }, (err, docs) => {
       if (!err) {
         res.json(docs);
-        console.log(docs);
       } else {
         res.status(500).json(err);
       }
@@ -27,7 +26,6 @@ const productsController = {
       description: req.body.description,
       isDeleted: false,
     });
-
     newProduct.save(function (err, doc) {
       if (!err) {
         res.json(doc);
@@ -51,13 +49,10 @@ const productsController = {
   update: (req, res) => {
     let id = req.params.id;
     let body = req.body;
-    console.log(body);
-
     products.findByIdAndUpdate(id, body, (err, doc) => {
       if (!err) {
         res.send(doc);
       } else {
-        res.send("errr");
         res.status(500).json(err);
       }
     });

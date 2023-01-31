@@ -37,25 +37,36 @@ const productsController = {
   remove: (req, res) => {
     let id = req.params.id;
     console.log(id);
-    products.findByIdAndUpdate(id, { isDeleted: true }, (err, doc) => {
-      if (!err) {
-        res.send(doc);
-      } else {
-        res.send("errr");
-        res.status(500).json(err);
+
+    products.findByIdAndUpdate(
+      id,
+      { isDeleted: true },
+      { new: true },
+      (err, doc) => {
+        if (!err) {
+          res.send(doc);
+        } else {
+          res.send("errr");
+          res.status(500).json(err);
+        }
       }
-    });
+    );
   },
   update: (req, res) => {
     let id = req.params.id;
     let body = req.body;
-    products.findByIdAndUpdate(id, body, (err, doc) => {
-      if (!err) {
-        res.send(doc);
-      } else {
-        res.status(500).json(err);
+    products.findByIdAndUpdate(
+      id,
+      body,
+      { runValidators: true },
+      (err, doc) => {
+        if (!err) {
+          res.send(doc);
+        } else {
+          res.status(500).json(err);
+        }
       }
-    });
+    );
   },
 };
 module.exports = {

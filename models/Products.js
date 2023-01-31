@@ -1,5 +1,4 @@
 const { default: mongoose, now } = require("mongoose");
-const { stringify } = require("querystring");
 const { Schema } = mongoose;
 
 const productSchema = new Schema({

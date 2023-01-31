@@ -55,18 +55,13 @@ const productsController = {
   update: (req, res) => {
     let id = req.params.id;
     let body = req.body;
-    products.findByIdAndUpdate(
-      id,
-      body,
-      { runValidators: true },
-      (err, doc) => {
-        if (!err) {
-          res.send(doc);
-        } else {
-          res.status(500).json(err);
-        }
+    products.findByIdAndUpdate(id, body, { new: true }, (err, doc) => {
+      if (!err) {
+        res.send(doc);
+      } else {
+        res.status(500).json(err);
       }
-    );
+    });
   },
 };
 module.exports = {

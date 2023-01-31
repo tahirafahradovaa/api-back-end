@@ -2,8 +2,14 @@ const { default: mongoose, now } = require("mongoose");
 const { Schema } = mongoose;
 
 const productSchema = new Schema({
-  productName: String,
-  description: String,
+  productName: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
   productDate: {
     type: Date,
     default: Date.now(),
